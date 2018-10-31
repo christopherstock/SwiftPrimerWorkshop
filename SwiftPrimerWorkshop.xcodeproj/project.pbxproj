@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E980D3E32189C5EC003EC0B5 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = E980D3E22189C5EC003EC0B5 /* Debug.swift */; };
 		E9F9BDE82189AB83006FC2DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9BDE72189AB83006FC2DF /* AppDelegate.swift */; };
 		E9F9BDEA2189AB83006FC2DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F9BDE92189AB83006FC2DF /* ViewController.swift */; };
 		E9F9BDED2189AB83006FC2DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9F9BDEB2189AB83006FC2DF /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E980D3E22189C5EC003EC0B5 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		E9F9BDE42189AB83006FC2DF /* SwiftPrimerWorkshop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPrimerWorkshop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F9BDE72189AB83006FC2DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9F9BDE92189AB83006FC2DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E980D3DD2189C266003EC0B5 /* de.mayflower.spw */ = {
+			isa = PBXGroup;
+			children = (
+				E980D3DE2189C30B003EC0B5 /* main */,
+				E980D3E02189C323003EC0B5 /* ui */,
+			);
+			path = de.mayflower.spw;
+			sourceTree = "<group>";
+		};
+		E980D3DE2189C30B003EC0B5 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				E9F9BDE72189AB83006FC2DF /* AppDelegate.swift */,
+				E980D3E22189C5EC003EC0B5 /* Debug.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		E980D3E02189C323003EC0B5 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				E9F9BDE92189AB83006FC2DF /* ViewController.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		E980D3E12189C353003EC0B5 /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				E9F9BDEB2189AB83006FC2DF /* Main.storyboard */,
+				E9F9BDF02189AB84006FC2DF /* LaunchScreen.storyboard */,
+			);
+			path = storyboards;
+			sourceTree = "<group>";
+		};
 		E9F9BDDB2189AB82006FC2DF = {
 			isa = PBXGroup;
 			children = (
@@ -97,11 +134,9 @@
 		E9F9BDE62189AB83006FC2DF /* SwiftPrimerWorkshop */ = {
 			isa = PBXGroup;
 			children = (
-				E9F9BDE72189AB83006FC2DF /* AppDelegate.swift */,
-				E9F9BDE92189AB83006FC2DF /* ViewController.swift */,
-				E9F9BDEB2189AB83006FC2DF /* Main.storyboard */,
+				E980D3DD2189C266003EC0B5 /* de.mayflower.spw */,
+				E980D3E12189C353003EC0B5 /* storyboards */,
 				E9F9BDEE2189AB84006FC2DF /* Assets.xcassets */,
-				E9F9BDF02189AB84006FC2DF /* LaunchScreen.storyboard */,
 				E9F9BDF32189AB84006FC2DF /* Info.plist */,
 			);
 			path = SwiftPrimerWorkshop;
@@ -257,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9F9BDEA2189AB83006FC2DF /* ViewController.swift in Sources */,
+				E980D3E32189C5EC003EC0B5 /* Debug.swift in Sources */,
 				E9F9BDE82189AB83006FC2DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
