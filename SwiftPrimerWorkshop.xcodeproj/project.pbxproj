@@ -76,11 +76,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E97C8A6C2197248700D33086 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				E980D3E22189C5EC003EC0B5 /* Debug.swift */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		E980D3DD2189C266003EC0B5 /* de.mayflower.spw */ = {
 			isa = PBXGroup;
 			children = (
 				E980D3DE2189C30B003EC0B5 /* main */,
 				E980D3E02189C323003EC0B5 /* ui */,
+				E97C8A6C2197248700D33086 /* util */,
 			);
 			path = de.mayflower.spw;
 			sourceTree = "<group>";
@@ -89,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				E9F9BDE72189AB83006FC2DF /* AppDelegate.swift */,
-				E980D3E22189C5EC003EC0B5 /* Debug.swift */,
 			);
 			path = main;
 			sourceTree = "<group>";

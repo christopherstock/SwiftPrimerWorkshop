@@ -6,8 +6,6 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
 
-        print( "UIViewController.viewDidLoad()" )
-
-        // Do any additional setup after loading the view, typically from a nib.
+        Debug.log( "ViewController.viewDidLoad()" )
     }
 }
