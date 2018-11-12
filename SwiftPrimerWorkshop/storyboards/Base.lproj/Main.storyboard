@@ -58,6 +58,8 @@
                     <connections>
                         <outlet property="CrawlButton" destination="4Bh-bV-QU5" id="DLD-Dl-DAS"/>
                         <outlet property="crawlButton" destination="4Bh-bV-QU5" id="m3I-to-h5c"/>
+                        <outlet property="htmlOutputText" destination="Ic9-Lg-Fpn" id="uyJ-n9-sua"/>
+                        <outlet property="urlInputField" destination="zal-fO-vhd" id="niR-07-QrX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
