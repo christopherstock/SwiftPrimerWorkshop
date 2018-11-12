@@ -16,7 +16,7 @@ class ViewController: UIViewController
     }
 
 
-    /** Being invoked when the button is pressed. */
+    /** Being invoked when the 'Crawl it!' button is pressed. */
     @IBAction func onPressCrawlButton( _ sender: Any )
     {
         Debug.log( "Crawl Button pressed" )
