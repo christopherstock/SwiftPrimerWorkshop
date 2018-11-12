@@ -2,10 +2,10 @@ import UIKit
 
 class ViewController: UIViewController
 {
-    // * * * Interface Builder Outlets go here.. * * *
+    // MARK: InterfaceBuilder Outlets
 
     /** The 'URL input' text field. */
-    @IBOutlet weak var urlInputField: UITextField!
+    @IBOutlet weak var urlInputField  :UITextField!
     /** The 'Crawl it!' button. */
     @IBOutlet weak var crawlButton    :UIButton!
     /** The 'HTML output' text view. */
@@ -21,10 +21,10 @@ class ViewController: UIViewController
         Debug.log( "ViewController.viewDidLoad()" )
     }
 
-    // * * * Interface Builder Actions go here.. * * *
+    // MARK: InterfaceBuilder Actions
 
     /** Being invoked when the 'Crawl it!' button is pressed. */
-    @IBAction func onPressCrawlButton( _ sender: Any )
+    @IBAction func onPressCrawlButton( _ sender: UIButton )
     {
         Debug.log( "Crawl Button pressed" )
 
