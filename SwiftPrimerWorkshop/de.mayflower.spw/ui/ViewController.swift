@@ -5,11 +5,13 @@ class ViewController: UIViewController, UITextFieldDelegate
     // MARK: InterfaceBuilder Outlets
 
     /** The 'URL input' text field. */
-    @IBOutlet weak var urlInputField  :UITextField!
+    @IBOutlet weak var urlInputField    :UITextField!
     /** The 'Crawl it!' button. */
-    @IBOutlet weak var crawlButton    :UIButton!
+    @IBOutlet weak var crawlButton      :UIButton!
     /** The 'HTML output' text view. */
-    @IBOutlet weak var htmlOutputText :UITextView!
+    @IBOutlet weak var htmlOutputText   :UITextView!
+    /** The loading indicator. */
+    @IBOutlet weak var loadingIndicator :UIActivityIndicatorView!
 
     /**
      *  Being invoked when the view controller is fully loaded.
@@ -40,7 +42,14 @@ class ViewController: UIViewController, UITextFieldDelegate
             + urlInputField.text!
         )
 
+        urlInputField.isEnabled = false
+        crawlButton.isEnabled   = false
 
+        loadingIndicator.startAnimating()
+
+
+
+//        loadingIndicator.stopAnimating()
 
     }
 
