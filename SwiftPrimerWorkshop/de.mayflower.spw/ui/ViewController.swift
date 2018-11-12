@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController
+class ViewController: UIViewController, UITextFieldDelegate
 {
     // MARK: InterfaceBuilder Outlets
 
@@ -19,14 +19,18 @@ class ViewController: UIViewController
         super.viewDidLoad()
 
         Debug.log( "ViewController.viewDidLoad()" )
+
+        urlInputField.delegate = self
     }
 
     // MARK: InterfaceBuilder Actions
 
-    /** Being invoked when the 'Crawl it!' button is pressed. */
+    /**
+     *  Being invoked when the 'Crawl it!' button is pressed.
+     */
     @IBAction func onPressCrawlButton( _ sender: UIButton )
     {
-        Debug.log( "Crawl Button pressed" )
+        Debug.log( "ViewController.onPressCrawlButton" )
 
         htmlOutputText.text = (
             "Button pressed at "
@@ -38,7 +42,25 @@ class ViewController: UIViewController
 
 
 
+    }
 
+    // MARK: UITextFieldDelegate
 
+    func textFieldShouldReturn( _ textField: UITextField ) -> Bool
+    {
+        Debug.log( "ViewController.textFieldShouldReturn" )
+
+        // hide the keyboard.
+        textField.resignFirstResponder()
+
+        return true
+    }
+
+    /**
+     *  Being invoked when the text field
+     */
+    func textFieldDidEndEditing( _ textField: UITextField ) -> Void
+    {
+        Debug.log( "ViewController.textFieldDidEndEditing" )
     }
 }
