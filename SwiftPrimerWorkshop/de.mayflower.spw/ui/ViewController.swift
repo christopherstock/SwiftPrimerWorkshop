@@ -44,10 +44,10 @@ class ViewController: UIViewController, UITextFieldDelegate
             + "Input field text is:\n"
             + urlInputField.text!
         )
-
+/*
         urlInputField.isEnabled = false
         crawlButton.isEnabled   = false
-
+*/
         loadingIndicator.startAnimating()
 
 
