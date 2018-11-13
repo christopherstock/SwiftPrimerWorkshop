@@ -1,5 +1,8 @@
 import UIKit
 
+/**
+ *  The View Controller that holds all UI components of the main view.
+ */
 class ViewController: UIViewController, UITextFieldDelegate
 {
     // MARK: InterfaceBuilder Outlets
@@ -49,7 +52,6 @@ class ViewController: UIViewController, UITextFieldDelegate
 
 
 
-//        loadingIndicator.stopAnimating()
 
     }
 

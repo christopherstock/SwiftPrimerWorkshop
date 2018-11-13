@@ -1,5 +1,8 @@
 import UIKit
 
+/**
+ *  The App Delegate represents the singleton application instane.
+ */
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
 {
