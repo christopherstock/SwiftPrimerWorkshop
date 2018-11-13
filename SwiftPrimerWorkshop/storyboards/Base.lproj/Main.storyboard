@@ -18,26 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wyp-RH-l6r">
-                                <rect key="frame" x="20" y="44" width="342" height="496"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wyp-RH-l6r">
+                                <rect key="frame" x="20" y="64" width="374" height="496"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wuzzy Web Crawler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-Yr-QQ3" userLabel="Title">
-                                        <rect key="frame" x="62.5" y="0.0" width="217" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.754920015490816" blue="0.66207701774836725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL goes here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zal-fO-vhd" userLabel="URL Input">
-                                        <rect key="frame" x="81.5" y="40" width="179" height="34"/>
+                                        <rect key="frame" x="0.0" y="40" width="374" height="34"/>
                                         <color key="backgroundColor" red="0.75436953650000005" green="1" blue="0.6659267069" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bh-bV-QU5" userLabel="Crawl Button">
-                                        <rect key="frame" x="143" y="84" width="56" height="30"/>
+                                        <rect key="frame" x="159" y="84" width="56" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.63924680438997084" blue="0.36209769247669044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <state key="normal" title="Crawl it!">
@@ -48,11 +47,11 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y2n-Au-3Sj">
-                                        <rect key="frame" x="161" y="124" width="20" height="20"/>
+                                        <rect key="frame" x="177" y="124" width="20" height="20"/>
                                         <color key="backgroundColor" red="0.78367662182803921" green="0.82493781853523485" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="HTML output" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Lg-Fpn" userLabel="HTML output">
-                                        <rect key="frame" x="0.0" y="154" width="342" height="342"/>
+                                        <rect key="frame" x="16" y="154" width="342" height="342"/>
                                         <color key="backgroundColor" red="1" green="0.95603268686540899" blue="0.75775589584882541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="342" id="9mL-wC-Pkw"/>
@@ -62,15 +61,27 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Bpk-Yr-QQ3" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="5ZX-It-g4K"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bpk-Yr-QQ3" secondAttribute="trailing" id="7eN-ce-Cfb"/>
+                                    <constraint firstItem="zal-fO-vhd" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="GN6-ZB-4g6"/>
+                                    <constraint firstAttribute="trailing" secondItem="zal-fO-vhd" secondAttribute="trailing" id="NXC-h5-h5l"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wyp-RH-l6r" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="Kdx-WX-hXE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wyp-RH-l6r" secondAttribute="trailing" constant="20" id="ghP-fr-yKR"/>
+                            <constraint firstItem="Wyp-RH-l6r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="n0b-uz-aPl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="crawlButton" destination="4Bh-bV-QU5" id="CM6-ZK-mZB"/>
                         <outlet property="htmlOutputText" destination="Ic9-Lg-Fpn" id="uyJ-n9-sua"/>
                         <outlet property="loadingIndicator" destination="y2n-Au-3Sj" id="6EG-Ju-fDH"/>
+                        <outlet property="titleLabel" destination="Bpk-Yr-QQ3" id="TI4-8A-oDC"/>
                         <outlet property="urlInputField" destination="zal-fO-vhd" id="niR-07-QrX"/>
                     </connections>
                 </viewController>

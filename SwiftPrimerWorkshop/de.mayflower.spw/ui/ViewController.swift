@@ -7,6 +7,8 @@ class ViewController: UIViewController, UITextFieldDelegate
 {
     // MARK: InterfaceBuilder Outlets
 
+    /** The 'Title' label. */
+    @IBOutlet weak var titleLabel       :UILabel!
     /** The 'URL input' text field. */
     @IBOutlet weak var urlInputField    :UITextField!
     /** The 'Crawl it!' button. */
@@ -26,6 +28,9 @@ class ViewController: UIViewController, UITextFieldDelegate
         Debug.log( "ViewController.viewDidLoad()" )
 
         urlInputField.delegate = self
+
+        titleLabel.layer.masksToBounds = true
+        titleLabel.layer.cornerRadius = 5
     }
 
     // MARK: InterfaceBuilder Actions
@@ -44,6 +49,10 @@ class ViewController: UIViewController, UITextFieldDelegate
             + "Input field text is:\n"
             + urlInputField.text!
         )
+
+
+
+        
 /*
         urlInputField.isEnabled = false
         crawlButton.isEnabled   = false
