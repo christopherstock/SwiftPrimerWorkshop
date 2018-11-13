@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wyp-RH-l6r">
-                                <rect key="frame" x="20" y="64" width="374" height="492"/>
+                                <rect key="frame" x="20" y="64" width="374" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wuzzy Web Crawler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-Yr-QQ3" userLabel="Title">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -51,10 +51,10 @@
                                         <color key="backgroundColor" red="0.78367662182803921" green="0.82493781853523485" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="HTML output" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Lg-Fpn" userLabel="HTML output">
-                                        <rect key="frame" x="0.0" y="150" width="374" height="342"/>
+                                        <rect key="frame" x="0.0" y="150" width="374" height="200"/>
                                         <color key="backgroundColor" red="1" green="0.95603268686540899" blue="0.75775589584882541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="342" id="DRt-Vl-EH9"/>
+                                            <constraint firstAttribute="height" constant="200" id="ZEL-Js-cKu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -66,10 +66,10 @@
                                     <constraint firstAttribute="trailing" secondItem="y2n-Au-3Sj" secondAttribute="trailing" id="AEc-M6-wOQ"/>
                                     <constraint firstItem="zal-fO-vhd" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="GN6-ZB-4g6"/>
                                     <constraint firstItem="y2n-Au-3Sj" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="H4e-U7-dtS"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ic9-Lg-Fpn" secondAttribute="trailing" id="Hu1-qD-pQH"/>
                                     <constraint firstItem="4Bh-bV-QU5" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="Jnz-BE-SLI"/>
                                     <constraint firstAttribute="trailing" secondItem="zal-fO-vhd" secondAttribute="trailing" id="NXC-h5-h5l"/>
-                                    <constraint firstItem="Ic9-Lg-Fpn" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="eFv-B1-CWG"/>
+                                    <constraint firstItem="Ic9-Lg-Fpn" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="Vkt-2d-Ucq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ic9-Lg-Fpn" secondAttribute="trailing" id="Xne-d3-hRZ"/>
                                     <constraint firstAttribute="trailing" secondItem="4Bh-bV-QU5" secondAttribute="trailing" id="qz3-gy-vjN"/>
                                 </constraints>
                             </stackView>
