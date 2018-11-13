@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="ipad12_9rounded" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,28 +15,28 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftPrimerWorkshop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wyp-RH-l6r">
-                                <rect key="frame" x="20" y="64" width="374" height="350"/>
+                                <rect key="frame" x="20" y="44" width="1326" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wuzzy Web Crawler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-Yr-QQ3" userLabel="Title">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1326" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.754920015490816" blue="0.66207701774836725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="URL goes here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zal-fO-vhd" userLabel="URL Input">
-                                        <rect key="frame" x="0.0" y="40" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="40" width="1326" height="30"/>
                                         <color key="backgroundColor" red="0.75436953650000005" green="1" blue="0.6659267069" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bh-bV-QU5" userLabel="Crawl Button">
-                                        <rect key="frame" x="0.0" y="80" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="80" width="1326" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.63924680438997084" blue="0.36209769247669044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <state key="normal" title="Crawl it!">
@@ -47,11 +47,11 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y2n-Au-3Sj">
-                                        <rect key="frame" x="0.0" y="120" width="374" height="20"/>
+                                        <rect key="frame" x="0.0" y="120" width="1326" height="20"/>
                                         <color key="backgroundColor" red="0.78367662182803921" green="0.82493781853523485" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="HTML output" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Lg-Fpn" userLabel="HTML output">
-                                        <rect key="frame" x="0.0" y="150" width="374" height="200"/>
+                                        <rect key="frame" x="0.0" y="150" width="1326" height="200"/>
                                         <color key="backgroundColor" red="1" green="0.95603268686540899" blue="0.75775589584882541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="ZEL-Js-cKu"/>
