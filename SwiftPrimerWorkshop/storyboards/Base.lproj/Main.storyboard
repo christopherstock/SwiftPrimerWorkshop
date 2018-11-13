@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wyp-RH-l6r">
-                                <rect key="frame" x="20" y="64" width="374" height="496"/>
+                                <rect key="frame" x="20" y="64" width="374" height="492"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wuzzy Web Crawler" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-Yr-QQ3" userLabel="Title">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -28,15 +28,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL goes here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zal-fO-vhd" userLabel="URL Input">
-                                        <rect key="frame" x="0.0" y="40" width="374" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="URL goes here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zal-fO-vhd" userLabel="URL Input">
+                                        <rect key="frame" x="0.0" y="40" width="374" height="30"/>
                                         <color key="backgroundColor" red="0.75436953650000005" green="1" blue="0.6659267069" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bh-bV-QU5" userLabel="Crawl Button">
-                                        <rect key="frame" x="0.0" y="84" width="374" height="30"/>
+                                        <rect key="frame" x="0.0" y="80" width="374" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.63924680438997084" blue="0.36209769247669044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                         <state key="normal" title="Crawl it!">
@@ -47,14 +47,13 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="y2n-Au-3Sj">
-                                        <rect key="frame" x="0.0" y="124" width="374" height="20"/>
+                                        <rect key="frame" x="0.0" y="120" width="374" height="20"/>
                                         <color key="backgroundColor" red="0.78367662182803921" green="0.82493781853523485" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="HTML output" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Lg-Fpn" userLabel="HTML output">
-                                        <rect key="frame" x="16" y="154" width="342" height="342"/>
+                                        <rect key="frame" x="0.0" y="150" width="374" height="342"/>
                                         <color key="backgroundColor" red="1" green="0.95603268686540899" blue="0.75775589584882541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="342" id="9mL-wC-Pkw"/>
                                             <constraint firstAttribute="height" constant="342" id="DRt-Vl-EH9"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -67,8 +66,10 @@
                                     <constraint firstAttribute="trailing" secondItem="y2n-Au-3Sj" secondAttribute="trailing" id="AEc-M6-wOQ"/>
                                     <constraint firstItem="zal-fO-vhd" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="GN6-ZB-4g6"/>
                                     <constraint firstItem="y2n-Au-3Sj" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="H4e-U7-dtS"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ic9-Lg-Fpn" secondAttribute="trailing" id="Hu1-qD-pQH"/>
                                     <constraint firstItem="4Bh-bV-QU5" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="Jnz-BE-SLI"/>
                                     <constraint firstAttribute="trailing" secondItem="zal-fO-vhd" secondAttribute="trailing" id="NXC-h5-h5l"/>
+                                    <constraint firstItem="Ic9-Lg-Fpn" firstAttribute="leading" secondItem="Wyp-RH-l6r" secondAttribute="leading" id="eFv-B1-CWG"/>
                                     <constraint firstAttribute="trailing" secondItem="4Bh-bV-QU5" secondAttribute="trailing" id="qz3-gy-vjN"/>
                                 </constraints>
                             </stackView>

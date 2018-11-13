@@ -13,10 +13,10 @@ class ViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var urlInputField    :UITextField!
     /** The 'Crawl it!' button. */
     @IBOutlet weak var crawlButton      :UIButton!
-    /** The 'HTML output' text view. */
-    @IBOutlet weak var htmlOutputText   :UITextView!
     /** The loading indicator. */
     @IBOutlet weak var loadingIndicator :UIActivityIndicatorView!
+    /** The 'HTML output' text view. */
+    @IBOutlet weak var htmlOutputText   :UITextView!
 
     /**
      *  Being invoked when the view controller is fully loaded.
@@ -27,10 +27,27 @@ class ViewController: UIViewController, UITextFieldDelegate
 
         Debug.log( "ViewController.viewDidLoad()" )
 
+        // set input field's delegate
         urlInputField.delegate = self
+        urlInputField.borderStyle = .none
+        urlInputField.layer.masksToBounds = true
+        urlInputField.layer.cornerRadius = 5
 
+        // round corners for title label
         titleLabel.layer.masksToBounds = true
         titleLabel.layer.cornerRadius = 5
+
+        // round corners for crawl button
+        crawlButton.layer.masksToBounds = true
+        crawlButton.layer.cornerRadius = 5
+
+        // round corners for loading circle
+        loadingIndicator.layer.masksToBounds = true
+        loadingIndicator.layer.cornerRadius = 5
+
+        // round corners for text output field
+        htmlOutputText.layer.masksToBounds = true
+        htmlOutputText.layer.cornerRadius = 5
     }
 
     // MARK: InterfaceBuilder Actions
