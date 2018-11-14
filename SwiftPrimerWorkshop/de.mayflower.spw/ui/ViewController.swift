@@ -55,7 +55,8 @@ class ViewController: UIViewController, UITextFieldDelegate
     /**
      *  Being invoked when the 'Crawl it!' button is pressed.
      */
-    @IBAction func onPressCrawlButton( _ sender: UIButton )
+    @IBAction
+    func onPressCrawlButton( _ sender: UIButton )
     {
         Debug.log( "ViewController.onPressCrawlButton" )
 
@@ -67,14 +68,12 @@ class ViewController: UIViewController, UITextFieldDelegate
             + urlInputField.text!
         )
 
-
-
-        
-/*
-        urlInputField.isEnabled = false
-        crawlButton.isEnabled   = false
-*/
+        // show the loading circle
         loadingIndicator.startAnimating()
+        // hide input fields
+        urlInputField.isHidden = true
+        crawlButton.isHidden = true
+
 
 
 
