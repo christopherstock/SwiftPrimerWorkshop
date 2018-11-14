@@ -48,6 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         // round corners for loading circle
         loadingIndicator.layer.masksToBounds = true
         loadingIndicator.layer.cornerRadius = 5
+        loadingIndicator.isHidden = true
 
         // round corners for text output field
         htmlOutputText.layer.masksToBounds = true
@@ -71,11 +72,10 @@ class ViewController: UIViewController, UITextFieldDelegate
         let urlToConnect :String = urlInputField.text!
 
         // show the loading circle
-        loadingIndicator.startAnimating()
+        loadingIndicator.isHidden = false
 
         // hide input fields
-        urlInputField.isHidden = true
-        crawlButton.isHidden = true
+        self.setUserInputEnabled( visible: false )
 
         // perform an URL connection
         performUrlConnection( url: urlToConnect )
@@ -125,8 +125,6 @@ class ViewController: UIViewController, UITextFieldDelegate
         // TODO make URL the method parameter type!
         let url:URL = URL( string: url )!
 
-        // TODO new thread!
-
         // specify the URL data task ( performed in bg thread )
         let task:URLSessionDataTask = URLSession.shared.dataTask( with: url )
         {
@@ -137,7 +135,7 @@ class ViewController: UIViewController, UITextFieldDelegate
             let htmlString:String = String( data: data, encoding: .utf8 )!
 
             // output the HTML ..
-            print( htmlString )	
+            print( htmlString )
 
             // invoke main thread
             DispatchQueue.main.async
@@ -145,18 +143,26 @@ class ViewController: UIViewController, UITextFieldDelegate
                 // show the results in the HTML output
                 self.htmlOutputText.text.append( "Crawled [" + String( htmlString.count ) + "] bytes" + "\n" )
 
-                // TODO outsource to setVisibility method!
-
                 // hide the loading circle
-                self.loadingIndicator.stopAnimating()
+                self.loadingIndicator.isHidden = true
 
                 // show the input components again
-                self.crawlButton.isHidden = false
-                self.urlInputField.isHidden = false
+                self.setUserInputEnabled( visible: true )
             }
         }
 
         // run the task
         task.resume()
+    }
+
+    /**
+     *  Enabled or disables user input.
+     *
+     *  @param visible If the user input elements shall be enabled or disabled.
+     */
+    func setUserInputEnabled( visible:Bool )
+    {
+        self.crawlButton.isHidden   = !visible
+        self.urlInputField.isHidden = !visible
     }
 }
