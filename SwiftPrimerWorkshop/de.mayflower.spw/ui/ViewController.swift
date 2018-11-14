@@ -137,7 +137,7 @@ class ViewController: UIViewController, UITextFieldDelegate
             let htmlString:String = String( data: data, encoding: .utf8 )!
 
             // output the HTML ..
-            print( htmlString )
+            print( htmlString )	
 
             // invoke main thread
             DispatchQueue.main.async
