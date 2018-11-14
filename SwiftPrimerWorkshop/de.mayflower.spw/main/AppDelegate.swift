@@ -2,6 +2,9 @@ import UIKit
 
 /**
  *  The App Delegate represents the singleton application instane.
+ *
+ *  TODO Function for appending HTMLTextOutput.
+ *  TODO Outsource Delegate functionality for input text field.
  */
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate

@@ -5,6 +5,9 @@ import UIKit
  */
 class ViewController: UIViewController, UITextFieldDelegate
 {
+    /** The default URL for the URL input field. */
+    let DEFAULT_URL :String = "http://www.google.de"
+
     // MARK: InterfaceBuilder Outlets
 
     /** The 'Title' label. */
@@ -32,6 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         urlInputField.borderStyle = .none
         urlInputField.layer.masksToBounds = true
         urlInputField.layer.cornerRadius = 5
+        urlInputField.text = DEFAULT_URL
 
         // round corners for title label
         titleLabel.layer.masksToBounds = true
@@ -48,6 +52,9 @@ class ViewController: UIViewController, UITextFieldDelegate
         // round corners for text output field
         htmlOutputText.layer.masksToBounds = true
         htmlOutputText.layer.cornerRadius = 5
+
+        // acclaim
+        htmlOutputText.text.append( "Welcome to the Wuzzy Web Crawler." + "\n" )
     }
 
     // MARK: InterfaceBuilder Actions
@@ -60,13 +67,8 @@ class ViewController: UIViewController, UITextFieldDelegate
     {
         Debug.log( "ViewController.onPressCrawlButton" )
 
-        htmlOutputText.text = (
-            "Button pressed at "
-            + DateFormatter().description
-            + "\n"
-            + "Input field text is:\n"
-            + urlInputField.text!
-        )
+        // pick the URL from the input field
+        let urlToConnect :String = urlInputField.text!
 
         // show the loading circle
         loadingIndicator.startAnimating()
@@ -74,14 +76,17 @@ class ViewController: UIViewController, UITextFieldDelegate
         urlInputField.isHidden = true
         crawlButton.isHidden = true
 
-
-
-
-
+        // perform an URL connection
+        performUrlConnection( url: urlToConnect )
     }
 
     // MARK: UITextFieldDelegate
 
+    /**
+     *  Being invoked when the text field completed all editing activities.
+     *
+     *  @param textField The text field that sent this event to the delegate.
+     */
     func textFieldShouldReturn( _ textField: UITextField ) -> Bool
     {
         Debug.log( "ViewController.textFieldShouldReturn" )
@@ -93,10 +98,38 @@ class ViewController: UIViewController, UITextFieldDelegate
     }
 
     /**
-     *  Being invoked when the text field
+     *  Being invoked when the text field completed all editing activities.
+     *
+     *  @param textField The text field that sent this event to the delegate.
      */
     func textFieldDidEndEditing( _ textField: UITextField ) -> Void
     {
         Debug.log( "ViewController.textFieldDidEndEditing" )
+    }
+
+    /**
+     *  Performs a connection to the specified URL.
+     *
+     *  @param url The URL to crawl.
+     */
+    func performUrlConnection( url:String )
+    {
+        Debug.log( "ViewController.performUrlConnection()" )
+        Debug.log( "Connect to URL [" + url + "]" )
+
+        htmlOutputText.text.append( "Connecting to URL [" + url + "]" + "\n" )
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
