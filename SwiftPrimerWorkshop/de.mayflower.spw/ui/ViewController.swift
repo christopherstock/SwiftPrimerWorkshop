@@ -28,34 +28,21 @@ class ViewController: UIViewController, UITextFieldDelegate
     {
         super.viewDidLoad()
 
+        // acclaim
         Debug.log( "ViewController.viewDidLoad()" )
+        appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler." )
 
         // set input field's delegate
         urlInputField.delegate = self
         urlInputField.borderStyle = .none
-        urlInputField.layer.masksToBounds = true
-        urlInputField.layer.cornerRadius = 5
         urlInputField.text = DEFAULT_URL
 
-        // round corners for title label
-        titleLabel.layer.masksToBounds = true
-        titleLabel.layer.cornerRadius = 5
-
-        // round corners for crawl button
-        crawlButton.layer.masksToBounds = true
-        crawlButton.layer.cornerRadius = 5
-
-        // round corners for loading circle
-        loadingIndicator.layer.masksToBounds = true
-        loadingIndicator.layer.cornerRadius = 5
-        loadingIndicator.isHidden = true
-
-        // round corners for text output field
-        htmlOutputText.layer.masksToBounds = true
-        htmlOutputText.layer.cornerRadius = 5
-
-        // acclaim
-        appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler." )
+        // set round corners for all UI elements
+        setRoundCorners( view: urlInputField    )
+        setRoundCorners( view: titleLabel       )
+        setRoundCorners( view: crawlButton      )
+        setRoundCorners( view: loadingIndicator )
+        setRoundCorners( view: htmlOutputText   )
     }
 
     // MARK: InterfaceBuilder Actions
@@ -174,5 +161,16 @@ class ViewController: UIViewController, UITextFieldDelegate
     func appendHtmlOutputFieldText( msg:String )
     {
         self.htmlOutputText.text.append( msg + "\n" )
+    }
+
+    /**
+     *  Sets round corners for the specified UIView element.
+     *
+     *  @param view The UIView element to round the corners for.
+     */
+    func setRoundCorners( view:UIView )
+    {
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius  = 5
     }
 }
