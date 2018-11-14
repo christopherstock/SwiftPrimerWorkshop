@@ -3,8 +3,11 @@ import UIKit
 /**
  *  The App Delegate represents the singleton application instane.
  *
- *  TODO Function for appending HTMLTextOutput.
+ *  TODO Create Function for appending HTMLTextOutput.
  *  TODO Outsource Delegate functionality for input text field.
+ *  TODO Add error handling for ALL kind of errors.
+ *  TODO Add colored HTML text?
+ *  TODO Scroll HTML Output to the end on appending text!
  */
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate

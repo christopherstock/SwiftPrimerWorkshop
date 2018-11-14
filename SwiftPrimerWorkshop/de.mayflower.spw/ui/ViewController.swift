@@ -6,7 +6,7 @@ import UIKit
 class ViewController: UIViewController, UITextFieldDelegate
 {
     /** The default URL for the URL input field. */
-    let DEFAULT_URL :String = "http://www.google.de"
+    let DEFAULT_URL :String = "http://christopherstock.de/"
 
     // MARK: InterfaceBuilder Outlets
 
@@ -72,6 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate
 
         // show the loading circle
         loadingIndicator.startAnimating()
+
         // hide input fields
         urlInputField.isHidden = true
         crawlButton.isHidden = true
@@ -117,19 +118,45 @@ class ViewController: UIViewController, UITextFieldDelegate
         Debug.log( "ViewController.performUrlConnection()" )
         Debug.log( "Connect to URL [" + url + "]" )
 
+        // TODO to function!
         htmlOutputText.text.append( "Connecting to URL [" + url + "]" + "\n" )
 
+        // TODO guard with output message!
+        // TODO make URL the method parameter type!
+        let url:URL = URL( string: url )!
 
+        // TODO new thread!
 
+        // specify the URL data task ( performed in bg thread )
+        let task:URLSessionDataTask = URLSession.shared.dataTask( with: url )
+        {
+            // TODO extract callback!
+            ( data, response, error ) in
+            guard let data = data else { return }
 
+            let htmlString:String = String( data: data, encoding: .utf8 )!
 
+            // output the HTML ..
+            print( htmlString )
 
+            // invoke main thread
+            DispatchQueue.main.async
+            {
+                // show the results in the HTML output
+                self.htmlOutputText.text.append( "Crawled [" + String( htmlString.count ) + "] bytes" + "\n" )
 
+                // TODO outsource to setVisibility method!
 
+                // hide the loading circle
+                self.loadingIndicator.stopAnimating()
 
+                // show the input components again
+                self.crawlButton.isHidden = false
+                self.urlInputField.isHidden = false
+            }
+        }
 
-
-
-
+        // run the task
+        task.resume()
     }
 }
