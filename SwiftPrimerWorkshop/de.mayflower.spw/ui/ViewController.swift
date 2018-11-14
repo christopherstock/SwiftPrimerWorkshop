@@ -55,7 +55,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         htmlOutputText.layer.cornerRadius = 5
 
         // acclaim
-        htmlOutputText.text.append( "Welcome to the Wuzzy Web Crawler." + "\n" )
+        appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler." )
     }
 
     // MARK: InterfaceBuilder Actions
@@ -118,8 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         Debug.log( "ViewController.performUrlConnection()" )
         Debug.log( "Connect to URL [" + url + "]" )
 
-        // TODO to function!
-        htmlOutputText.text.append( "Connecting to URL [" + url + "]" + "\n" )
+        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url + "]" )
 
         // TODO guard with output message!
         // TODO make URL the method parameter type!
@@ -141,7 +140,7 @@ class ViewController: UIViewController, UITextFieldDelegate
             DispatchQueue.main.async
             {
                 // show the results in the HTML output
-                self.htmlOutputText.text.append( "Crawled [" + String( htmlString.count ) + "] bytes" + "\n" )
+                self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes" )
 
                 // hide the loading circle
                 self.loadingIndicator.isHidden = true
@@ -164,5 +163,16 @@ class ViewController: UIViewController, UITextFieldDelegate
     {
         self.crawlButton.isHidden   = !visible
         self.urlInputField.isHidden = !visible
+    }
+
+    /**
+     *  Appends the text in the HTML Output textfield by the specified message.
+     *  The message is followed by a line break.
+     *
+     *  @param msg The message to append to the HTML Output.
+     */
+    func appendHtmlOutputFieldText( msg:String )
+    {
+        self.htmlOutputText.text.append( msg + "\n" )
     }
 }
