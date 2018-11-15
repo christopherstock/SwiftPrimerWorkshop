@@ -43,6 +43,9 @@ class ViewController: UIViewController, UITextFieldDelegate
         setRoundCorners( view: crawlButton      )
         setRoundCorners( view: loadingIndicator )
         setRoundCorners( view: htmlOutputText   )
+
+        // hide the loading indicator
+        self.loadingIndicator.isHidden = true
     }
 
     // MARK: InterfaceBuilder Actions
@@ -65,7 +68,8 @@ class ViewController: UIViewController, UITextFieldDelegate
         self.setUserInputEnabled( visible: false )
 
         // perform an URL connection
-        performUrlConnection( url: urlToConnect )
+        let url:URL = URL( string: urlToConnect )!
+        performUrlConnection( url: url )
     }
 
     // MARK: UITextFieldDelegate
@@ -100,28 +104,27 @@ class ViewController: UIViewController, UITextFieldDelegate
      *
      *  @param url The URL to crawl.
      */
-    func performUrlConnection( url:String )
+    func performUrlConnection( url:URL )
     {
         Debug.log( "ViewController.performUrlConnection()" )
-        Debug.log( "Connect to URL [" + url + "]" )
+        Debug.log( "Connect to URL [" + url.description + "]" )
 
-        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url + "]" )
+        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]" )
 
         // TODO guard with output message!
-        // TODO make URL the method parameter type!
-        let url:URL = URL( string: url )!
 
         // specify the URL data task ( performed in bg thread )
         let task:URLSessionDataTask = URLSession.shared.dataTask( with: url )
         {
-            // TODO extract callback!
+            // TODO extract callback to separate method!
             ( data, response, error ) in
             guard let data = data else { return }
 
+            // TODO implement error handling in case of 404 etc.
             let htmlString:String = String( data: data, encoding: .utf8 )!
 
             // output the HTML ..
-            print( htmlString )
+//            print( htmlString.substring[ ...100 ] )
 
             // invoke main thread
             DispatchQueue.main.async
