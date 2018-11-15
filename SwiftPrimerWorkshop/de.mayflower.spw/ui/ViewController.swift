@@ -101,7 +101,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         Debug.log( "ViewController.textFieldDidEndEditing" )
     }
 
-    // TODO outsource!
+    // TODO outsource! - create callback to invoke when done etc.
 
     /**
      *  Performs a connection to the specified URL.
@@ -125,11 +125,10 @@ class ViewController: UIViewController, UITextFieldDelegate
             guard let data = data else { return }
 
             // TODO implement error handling in case of 404 etc.
-            let htmlString:String = String( data: data, encoding: .utf8 )!
-
-            // output some cropped HTML
-            let croppedHtmlString:String = String( htmlString.prefix( 75 ) )
-            print( croppedHtmlString + "..." )
+            let htmlString          :String = String( data: data, encoding: .utf8 )!
+            let croppedHtmlString   :String = String( htmlString.prefix( 75 ) )
+            let replacedHtmlString  :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
+            print( replacedHtmlString )
 
             // invoke main thread
             DispatchQueue.main.async
