@@ -23,6 +23,9 @@ class ViewController: UIViewController, UITextFieldDelegate
     /** The 'HTML output' text view. */
     @IBOutlet weak var htmlOutputText   :UITextView!
 
+    /** The mutable attributed string being applied to the HTML Output Textfield. */
+    var outputTextContent :NSMutableAttributedString = NSMutableAttributedString()
+
     /**
      *  Being invoked when the view controller is fully loaded.
      */
@@ -32,7 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate
 
         // acclaim console and output field
         Debug.log( "ViewController.viewDidLoad()" )
-        appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler." )
+        appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler.", color: UIColor.orange )
 
         // set input field's delegate
         urlInputField.delegate = self
@@ -76,6 +79,8 @@ class ViewController: UIViewController, UITextFieldDelegate
 
     // MARK: UITextFieldDelegate
 
+    // TODO Outsource Delegate functionality for input text field.
+
     /**
      *  Being invoked when the text field completed all editing activities.
      *
@@ -113,7 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         Debug.log( "ViewController.performUrlConnection()" )
         Debug.log( "Connect to URL [" + url.description + "]" )
 
-        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]" )
+        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.red )
 
         // TODO guard with output message!
 
@@ -143,11 +148,20 @@ class ViewController: UIViewController, UITextFieldDelegate
      *  Appends the text in the HTML Output textfield by the specified message.
      *  The message is followed by a line break.
      *
-     *  @param msg The message to append to the HTML Output.
+     *  @param msg   The message to append to the HTML Output.
+     *  @param color The color for the message to appear.
      */
-    func appendHtmlOutputFieldText( msg:String )
+    func appendHtmlOutputFieldText( msg:String, color:UIColor )
     {
-        self.htmlOutputText.text.append( msg + "\n" )
+        let string           :String                         = ( msg + "\n" )
+        let attributes       :[NSAttributedString.Key : Any] = [ NSAttributedString.Key.foregroundColor: color ]
+        let attributesString :NSAttributedString             = NSAttributedString( string: string, attributes: attributes )
+
+        // append stored mutable string
+        outputTextContent.append( attributesString )
+
+        // reassign stored mutable string to output field
+        self.htmlOutputText.attributedText = outputTextContent
     }
 
     /**
@@ -166,7 +180,7 @@ class ViewController: UIViewController, UITextFieldDelegate
      */
     func receiveUrlCallback( data:Data?, response:URLResponse?, error:Error? ) -> Void
     {
-        // TODO implement error handling in case of 404 etc.
+        // TODO implement error handling in case of 1. wrong URL, 2. empty field, 3. 404, 4. timeout etc.
 
         // pick data
         guard let data = data else { return }
@@ -180,6 +194,9 @@ class ViewController: UIViewController, UITextFieldDelegate
 
     /**
      *  Handles the received HTML string.
+     *  It will be logged to the debug console and its length will be printed in the HTML Output Field.
+     *
+     *  @param htmlString The HTML string to process.
      */
     func handleReceivedHtml( htmlString:String ) -> Void
     {
@@ -192,7 +209,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         DispatchQueue.main.async
         {
             // show the results in the HTML output
-            self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes" )
+            self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes", color: UIColor.green )
 
             // hide the loading circle
             self.loadingIndicator.isHidden = true
