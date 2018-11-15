@@ -45,11 +45,11 @@ class ViewController: UIViewController, UITextFieldDelegate
         urlInputField.text = DEFAULT_URL
 
         // set round corners for all UI elements
-        setRoundCorners( view: urlInputField    )
-        setRoundCorners( view: titleLabel       )
-        setRoundCorners( view: crawlButton      )
-        setRoundCorners( view: loadingIndicator )
-        setRoundCorners( view: htmlOutputText   )
+        UI.setRoundCorners( view: urlInputField    )
+        UI.setRoundCorners( view: titleLabel       )
+        UI.setRoundCorners( view: crawlButton      )
+        UI.setRoundCorners( view: loadingIndicator )
+        UI.setRoundCorners( view: htmlOutputText   )
 
         // hide the loading indicator
         self.loadingIndicator.isHidden = true
@@ -168,17 +168,6 @@ class ViewController: UIViewController, UITextFieldDelegate
         // scroll textfield to bottom
         let bottom = NSMakeRange( htmlOutputText.text.count - 1, 1 )
         htmlOutputText.scrollRangeToVisible( bottom )
-    }
-
-    /**
-     *  Sets round corners for the specified UIView element.
-     *
-     *  @param view The UIView element to round the corners for.
-     */
-    func setRoundCorners( view:UIView )
-    {
-        view.layer.masksToBounds = true
-        view.layer.cornerRadius  = 5
     }
 
     /**
