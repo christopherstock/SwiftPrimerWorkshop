@@ -2,6 +2,8 @@ import UIKit
 
 /**
  *  The View Controller that holds all UI components of the main view.
+ *
+ *  TODO Add error handling for ALL kind of errors.
  */
 class ViewController: UIViewController, UITextFieldDelegate
 {
@@ -161,7 +163,11 @@ class ViewController: UIViewController, UITextFieldDelegate
         outputTextContent.append( attributesString )
 
         // reassign stored mutable string to output field
-        self.htmlOutputText.attributedText = outputTextContent
+        htmlOutputText.attributedText = outputTextContent
+
+        // scroll textfield to bottom
+        let bottom = NSMakeRange( htmlOutputText.text.count - 1, 1 )
+        htmlOutputText.scrollRangeToVisible( bottom )
     }
 
     /**
