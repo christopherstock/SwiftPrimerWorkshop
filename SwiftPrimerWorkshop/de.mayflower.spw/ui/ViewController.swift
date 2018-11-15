@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITextFieldDelegate
     {
         super.viewDidLoad()
 
-        // acclaim
+        // acclaim console and output field
         Debug.log( "ViewController.viewDidLoad()" )
         appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler." )
 
@@ -120,28 +120,8 @@ class ViewController: UIViewController, UITextFieldDelegate
         // specify the URL data task ( performed in bg thread )
         let task:URLSessionDataTask = URLSession.shared.dataTask( with: url )
         {
-            // TODO extract callback to separate method!
-            ( data, response, error ) in
-            guard let data = data else { return }
-
-            // TODO implement error handling in case of 404 etc.
-            let htmlString          :String = String( data: data, encoding: .utf8 )!
-            let croppedHtmlString   :String = String( htmlString.prefix( 75 ) )
-            let replacedHtmlString  :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
-            print( replacedHtmlString )
-
-            // invoke main thread
-            DispatchQueue.main.async
-            {
-                // show the results in the HTML output
-                self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes" )
-
-                // hide the loading circle
-                self.loadingIndicator.isHidden = true
-
-                // show the input components again
-                self.setUserInputEnabled( visible: true )
-            }
+            ( data:Data?, response:URLResponse?, error:Error? ) in
+            self.receiveUrlCallback( data: data, response: response, error: error )
         }
 
         // run the task
@@ -179,5 +159,46 @@ class ViewController: UIViewController, UITextFieldDelegate
     {
         view.layer.masksToBounds = true
         view.layer.cornerRadius  = 5
+    }
+
+    /**
+     *  Being invoked when the URL callback arrived.
+     */
+    func receiveUrlCallback( data:Data?, response:URLResponse?, error:Error? ) -> Void
+    {
+        // TODO implement error handling in case of 404 etc.
+
+        // pick data
+        guard let data = data else { return }
+
+        // convert data to HTML
+        let htmlString :String = String( data: data, encoding: .utf8 )!
+
+        // handle the HTML
+        self.handleReceivedHtml( htmlString: htmlString )
+    }
+
+    /**
+     *  Handles the received HTML string.
+     */
+    func handleReceivedHtml( htmlString:String ) -> Void
+    {
+        // process HTML for output
+        let croppedHtmlString   :String = String( htmlString.prefix( 75 ) )
+        let replacedHtmlString  :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
+        print( replacedHtmlString )
+
+        // run on main thread
+        DispatchQueue.main.async
+        {
+            // show the results in the HTML output
+            self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes" )
+
+            // hide the loading circle
+            self.loadingIndicator.isHidden = true
+
+            // show the input components again
+            self.setUserInputEnabled( visible: true )
+        }
     }
 }
