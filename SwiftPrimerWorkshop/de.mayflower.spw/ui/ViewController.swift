@@ -10,6 +10,8 @@ class ViewController: UIViewController, UITextFieldDelegate
 
     // MARK: InterfaceBuilder Outlets
 
+    // TODO outsource!
+
     /** The 'Title' label. */
     @IBOutlet weak var titleLabel       :UILabel!
     /** The 'URL input' text field. */
@@ -99,6 +101,8 @@ class ViewController: UIViewController, UITextFieldDelegate
         Debug.log( "ViewController.textFieldDidEndEditing" )
     }
 
+    // TODO outsource!
+
     /**
      *  Performs a connection to the specified URL.
      *
@@ -124,8 +128,8 @@ class ViewController: UIViewController, UITextFieldDelegate
             let htmlString:String = String( data: data, encoding: .utf8 )!
 
             // output some cropped HTML
-            let croppedHtmlString:String = String( htmlString.prefix( 20 ) )
-            print( croppedHtmlString )
+            let croppedHtmlString:String = String( htmlString.prefix( 75 ) )
+            print( croppedHtmlString + "..." )
 
             // invoke main thread
             DispatchQueue.main.async
