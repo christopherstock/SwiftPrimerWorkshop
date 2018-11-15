@@ -123,8 +123,9 @@ class ViewController: UIViewController, UITextFieldDelegate
             // TODO implement error handling in case of 404 etc.
             let htmlString:String = String( data: data, encoding: .utf8 )!
 
-            // output the HTML ..
-//            print( htmlString.substring[ ...100 ] )
+            // output some cropped HTML
+            let croppedHtmlString:String = String( htmlString.prefix( 20 ) )
+            print( croppedHtmlString )
 
             // invoke main thread
             DispatchQueue.main.async
