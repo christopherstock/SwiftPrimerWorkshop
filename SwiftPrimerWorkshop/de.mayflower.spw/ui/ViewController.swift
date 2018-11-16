@@ -38,6 +38,7 @@ class ViewController: UIViewController, URLConnectionDelegate
         Debug.log( "ViewController.viewDidLoad()" )
         appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler.", color: UIColor.orange )
 
+        // create the delegate for the input text field
         textFieldDelegate = TextFieldDelegate()
 
         // set input field's delegate
@@ -52,8 +53,8 @@ class ViewController: UIViewController, URLConnectionDelegate
         UI.setRoundCorners( view: loadingIndicator )
         UI.setRoundCorners( view: htmlOutputText   )
 
-        // hide the loading indicator
-        self.loadingIndicator.isHidden = true
+        // enable user input
+        self.setUserInputEnabled( enabled: true )
     }
 
     // MARK: InterfaceBuilder Actions
@@ -66,42 +67,41 @@ class ViewController: UIViewController, URLConnectionDelegate
     {
         Debug.log( "ViewController.onPressCrawlButton" )
 
-        // show the loading circle
-        loadingIndicator.isHidden = false
-
-
         // pick the URL from the input field
-        let urlToConnect :String = urlInputField.text!
+        let insertedUrlText :String = urlInputField.text!
 
-        // hide input fields
-        self.setUserInputEnabled( visible: false )
-
-        // create URL to crawl
-        let url:URL? = URL( string: urlToConnect )
-
-        // check for valid URL
-        if let url:URL = url
+        // create URL and break if invalid
+        guard let url:URL = URL( string: insertedUrlText ) else
         {
-            // log URL to crawl
-            Debug.log( "Connect to URL [" + url.description + "]" )
-            appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange )
+            // log invalid URL
+            print( "The inserted URL [" + insertedUrlText + "] is invalid!" )
+            appendHtmlOutputFieldText( msg: "The inserted URl [" + insertedUrlText + "] is invalid!", color: UIColor.red )
 
-            // perform an URL connection
-            IO.performUrlConnection( url: url, delegate: self )
+            return
         }
 
-        // TODO Error handling! use Guard syntax!
+        // hide input fields
+        self.setUserInputEnabled( enabled: false )
+
+        // log URL to crawl
+        Debug.log( "Connect to URL [" + url.description + "]" )
+        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange )
+
+        // perform an URL connection
+        IO.performUrlConnection( url: url, delegate: self )
     }
 
     /**
      *  Enabled or disables user input.
      *
-     *  @param visible If the user input elements shall be enabled or disabled.
+     *  @param enabled If the user input elements shall be enabled or disabled.
      */
-    func setUserInputEnabled( visible:Bool )
+    func setUserInputEnabled( enabled:Bool ) -> Void
     {
-        self.crawlButton.isHidden   = !visible
-        self.urlInputField.isHidden = !visible
+        self.crawlButton.isHidden   = !enabled
+        self.urlInputField.isHidden = !enabled
+
+        self.loadingIndicator.isHidden = enabled
     }
 
     /**
@@ -170,11 +170,8 @@ class ViewController: UIViewController, URLConnectionDelegate
             // show the results in the HTML output
             self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes", color: UIColor.green )
 
-            // hide the loading circle
-            self.loadingIndicator.isHidden = true
-
             // show the input components again
-            self.setUserInputEnabled( visible: true )
+            self.setUserInputEnabled( enabled: true )
         }
     }
 }
