@@ -83,21 +83,21 @@ class IO
      */
     func receiveUrlCallback(data:Data?, response:URLResponse?, error:Error?, vc:ViewController) -> Void
     {
-        // check for a connection error
+        // check connection error
         if let error:Error = error
         {
-            vc.urlCallback(urlResponse: UrlConnectionResponse.CONNECTION_ERROR, htmlString: nil, error: error)
+            vc.urlCallback(urlResponse: .CONNECTION_ERROR, htmlString: nil, error: error)
             return
         }
 
-        // pick text data
+        // check text encoding error
         guard let data:Data = data, let htmlString:String = String(data: data, encoding: .utf8) else
         {
-            vc.urlCallback(urlResponse: UrlConnectionResponse.TEXT_ENCODING_ERROR)
+            vc.urlCallback(urlResponse: .TEXT_ENCODING_ERROR)
             return
         }
 
-        // handle the HTML
-        vc.urlCallback(urlResponse: UrlConnectionResponse.SUCCESS, htmlString: htmlString)
+        // callback success
+        vc.urlCallback(urlResponse: .SUCCESS, htmlString: htmlString)
     }
 }

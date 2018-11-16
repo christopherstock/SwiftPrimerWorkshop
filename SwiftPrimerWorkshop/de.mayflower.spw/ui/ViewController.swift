@@ -118,25 +118,6 @@ class ViewController: UIViewController // , URLConnectionDelegate
     }
 
     /**
-     *  Handles the received HTML string.
-     *  It will be logged to the debug console and its length will be printed in the HTML Output Field.
-     *
-     *  @param htmlString The HTML string to process.
-     */
-    func handleReceivedHtml(htmlString:String) -> Void
-    {
-        // process HTML for output
-        let croppedHtmlString  :String = String(htmlString.prefix(75))
-        let replacedHtmlString :String = croppedHtmlString.replacingOccurrences(of: "\n", with: " ")
-        print(replacedHtmlString)
-
-        self.showResultAndEnableUserInput(
-            msg: "Crawled [" + String( htmlString.count ) + "] bytes",
-            color: UIColor.green
-        )
-    }
-
-    /**
      *  Outputs the result in the HTML output dialog and shows the user input fields.
      *  These operations are performed on the Main Thread.
      *
@@ -168,27 +149,37 @@ class ViewController: UIViewController // , URLConnectionDelegate
         switch (urlResponse)
         {
             case .INVALID_URL:
+
                 self.showResultAndEnableUserInput(
                     msg: "The inserted URL is invalid!",
                     color: UIColor.red
                 )
-                break
 
             case .CONNECTION_ERROR:
+
                 self.showResultAndEnableUserInput(
                     msg: "Error occured on connecting: [" + error!.localizedDescription + "]",
                     color: UIColor.red
                 )
 
             case .TEXT_ENCODING_ERROR:
+
                 self.showResultAndEnableUserInput(
                     msg: "Error! Data could not be converted to text!",
                     color: UIColor.red
                 )
 
             case .SUCCESS:
-                self.handleReceivedHtml(htmlString: htmlString!)
-                break
+
+                // process HTML for output
+                let croppedHtmlString  :String = String(htmlString!.prefix(75))
+                let replacedHtmlString :String = croppedHtmlString.replacingOccurrences(of: "\n", with: " ")
+                print(replacedHtmlString)
+
+                self.showResultAndEnableUserInput(
+                    msg: "Crawled [" + String( htmlString!.count ) + "] bytes",
+                    color: UIColor.green
+                )
         }
     }
 }
