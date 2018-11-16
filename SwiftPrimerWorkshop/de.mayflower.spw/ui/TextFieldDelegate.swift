@@ -14,7 +14,7 @@ class TextFieldDelegate : NSObject, UITextFieldDelegate
     {
         Debug.log( "ViewController.textFieldShouldReturn" )
 
-        // hide the keyboard.
+        // hide the keyboard
         textField.resignFirstResponder()
 
         return true

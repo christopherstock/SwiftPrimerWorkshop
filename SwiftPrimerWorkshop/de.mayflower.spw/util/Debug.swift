@@ -4,7 +4,7 @@
 class Debug
 {
     /** Enables or disables the debug mode. */
-    static let DEBUG_MODE :Bool = true
+    static let DEBUG_MODE = true
 
     /**
      *  Logs the specified debug message in the debug console.
@@ -12,7 +12,7 @@ class Debug
      *
      *  @param msg The message or any debug object to log.
      */
-    static func log( _ msg:Any )
+    static func log( _ msg:Any ) -> Void
     {
         if ( Debug.DEBUG_MODE )
         {

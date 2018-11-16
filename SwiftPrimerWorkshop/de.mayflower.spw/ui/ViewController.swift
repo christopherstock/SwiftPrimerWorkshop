@@ -6,7 +6,7 @@ import UIKit
 class ViewController: UIViewController, URLConnectionDelegate
 {
     /** The default URL for the URL input field. */
-    let DEFAULT_URL :String = "http://christopherstock.de/"
+    let DEFAULT_URL = "http://christopherstock.de/"
 
     // MARK: InterfaceBuilder Outlets
 
@@ -21,11 +21,10 @@ class ViewController: UIViewController, URLConnectionDelegate
     /** The 'HTML output' text view. */
     @IBOutlet weak var htmlOutputText :UITextView!
 
-    /** The reference to the text field delegate. TODO remove all redundant type definitions! */
-    var textFieldDelegate :TextFieldDelegate = TextFieldDelegate()
-
+    /** The reference to the text field delegate. */
+    var textFieldDelegate = TextFieldDelegate()
     /** The mutable attributed string being applied to the HTML Output Textfield. */
-    var outputTextContent :NSMutableAttributedString = NSMutableAttributedString()
+    var outputTextContent = NSMutableAttributedString()
 
     /**
      *  Being invoked when the view controller is fully loaded.
