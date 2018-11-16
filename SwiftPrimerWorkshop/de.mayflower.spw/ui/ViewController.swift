@@ -10,7 +10,7 @@ class ViewController: UIViewController, URLConnectionDelegate
 
     // MARK: InterfaceBuilder Outlets
 
-    /** The 'Title' label. */
+    /** The 'Title' label. TODO remove spaces! */
     @IBOutlet weak var titleLabel       :UILabel!
     /** The 'URL input' text field. */
     @IBOutlet weak var urlInputField    :UITextField!
@@ -21,8 +21,8 @@ class ViewController: UIViewController, URLConnectionDelegate
     /** The 'HTML output' text view. */
     @IBOutlet weak var htmlOutputText   :UITextView!
 
-    /** The reference to the text field delegate. */
-    var textFieldDelegate :UITextFieldDelegate?
+    /** The reference to the text field delegate. TODO remove all redundant type definitions! */
+    var textFieldDelegate :TextFieldDelegate = TextFieldDelegate()
 
     /** The mutable attributed string being applied to the HTML Output Textfield. */
     var outputTextContent :NSMutableAttributedString = NSMutableAttributedString()
@@ -37,9 +37,6 @@ class ViewController: UIViewController, URLConnectionDelegate
         // acclaim console and output field
         Debug.log( "ViewController.viewDidLoad()" )
         appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler.", color: UIColor.orange )
-
-        // create the delegate for the input text field
-        textFieldDelegate = TextFieldDelegate()
 
         // set input field's delegate
         urlInputField.delegate = textFieldDelegate
@@ -113,9 +110,9 @@ class ViewController: UIViewController, URLConnectionDelegate
      */
     func appendHtmlOutputFieldText( msg:String, color:UIColor )
     {
-        let string           :String                         = ( msg + "\n" )
-        let attributes       :[NSAttributedString.Key : Any] = [ NSAttributedString.Key.foregroundColor: color ]
-        let attributesString :NSAttributedString             = NSAttributedString( string: string, attributes: attributes )
+        let string           :String                           = ( msg + "\n" )
+        let attributes       :[ NSAttributedString.Key : Any ] = [ NSAttributedString.Key.foregroundColor: color ]
+        let attributesString :NSAttributedString               = NSAttributedString( string: string, attributes: attributes )
 
         // append stored mutable string
         outputTextContent.append( attributesString )
@@ -137,6 +134,7 @@ class ViewController: UIViewController, URLConnectionDelegate
      *  @param response The URL response object.
      *  @param error    Any error that occured during URL connection.
      */
+    // TODO enum return value!
     func receiveUrlCallback( data:Data?, response:URLResponse?, error:Error? ) -> Void
     {
         // check for a connection error
@@ -151,20 +149,9 @@ class ViewController: UIViewController, URLConnectionDelegate
         }
 
         // pick text data
-        guard let data:Data = data else
+        guard let data:Data = data, let htmlString:String = String( data: data, encoding: .utf8 ) else
         {
-            self.showResultAndEnableUserInput(
-                msg: "Error! Data could not be converted to text!",
-                color: UIColor.red
-            )
-
-            return
-        }
-
-        // convert data to HTML
-        // TODO merge with previous "guard" statement
-        guard let htmlString:String = String( data: data, encoding: .utf8 ) else
-        {
+            // TODO Return enum constants !!
             self.showResultAndEnableUserInput(
                 msg: "Error! Data could not be converted to text!",
                 color: UIColor.red

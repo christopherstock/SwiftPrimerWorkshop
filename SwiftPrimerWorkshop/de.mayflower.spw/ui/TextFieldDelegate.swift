@@ -3,7 +3,7 @@ import UIKit
 /**
  *  Contains the Input URL text field's delegate.
  */
-class TextFieldDelegate : ViewController, UITextFieldDelegate
+class TextFieldDelegate : NSObject, UITextFieldDelegate
 {
     /**
      *  Being invoked when the text field completed all editing activities.

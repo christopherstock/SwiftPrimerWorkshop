@@ -28,14 +28,16 @@ class IO
      */
     static func performUrlConnection( url:URL, delegate:URLConnectionDelegate )
     {
-        // TODO guard with output message!
-
-        // specify the URL data task ( performed in bg thread )
-        let task:URLSessionDataTask = URLSession.shared.dataTask( with: url )
-        {
+        let callback = {
             ( data:Data?, response:URLResponse?, error:Error? ) in
             delegate.receiveUrlCallback( data: data, response: response, error: error )
         }
+
+        // specify the URL data task ( performed in bg thread )
+        let task:URLSessionDataTask = URLSession.shared.dataTask(
+            with: url,
+            completionHandler: callback
+        )
 
         // run the task
         task.resume()
