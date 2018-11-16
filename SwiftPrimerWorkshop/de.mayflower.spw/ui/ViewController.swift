@@ -2,8 +2,11 @@ import UIKit
 
 /**
  *  The View Controller that holds all UI components of the main view.
+ *
+ *  TODO reorder methods!
+ *  TODO Understand return type 'Never' !
  */
-class ViewController: UIViewController, URLConnectionDelegate
+class ViewController: UIViewController // , URLConnectionDelegate
 {
     /** The default URL for the URL input field. */
     let DEFAULT_URL = "http://christopherstock.de/"
@@ -84,7 +87,7 @@ class ViewController: UIViewController, URLConnectionDelegate
         appendHtmlOutputFieldText(msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange)
 
         // perform an URL connection
-        IO.performUrlConnection(url: url, delegate: self)
+        IO().performUrlConnection(url: url, vc: self)
     }
 
     /**
@@ -124,43 +127,6 @@ class ViewController: UIViewController, URLConnectionDelegate
         htmlOutputText.scrollRangeToVisible(bottom)
     }
 
-    // MARK: URLConnectionDelegate
-
-    /**
-     *  Being invoked when the URL callback arrived.
-     *
-     *  @param data     The received data.
-     *  @param response The URL response object.
-     *  @param error    Any error that occured during URL connection.
-     */
-    // TODO enum return value!
-    func receiveUrlCallback(data:Data?, response:URLResponse?, error:Error?) -> Void
-    {
-        // check for a connection error
-        if let error:Error = error
-        {
-            self.showResultAndEnableUserInput(
-                msg: "Error occured on connecting: [" + error.localizedDescription + "]",
-                color: UIColor.red
-            )
-            return
-        }
-
-        // pick text data
-        guard let data:Data = data, let htmlString:String = String(data: data, encoding: .utf8) else
-        {
-            // TODO Return enum constants !!
-            self.showResultAndEnableUserInput(
-                msg: "Error! Data could not be converted to text!",
-                color: UIColor.red
-            )
-            return
-        }
-
-        // handle the HTML
-        self.handleReceivedHtml(htmlString: htmlString)
-    }
-
     /**
      *  Handles the received HTML string.
      *  It will be logged to the debug console and its length will be printed in the HTML Output Field.
@@ -197,6 +163,41 @@ class ViewController: UIViewController, URLConnectionDelegate
 
             // show the input components again
             self.setUserInputEnabled(enabled: true)
+        }
+    }
+
+    /**
+     *  Being invoked when an URL connection request has returned.
+     *
+     *  @param urlResponse The response state.
+     *  @param htmlString  The received HTML string.
+     *  @param error       Any error that occurred on connecting.
+     */
+    func urlCallback(urlResponse: UrlConnectionResponse, htmlString:String? = nil, error:Error? = nil)
+    {
+        switch (urlResponse)
+        {
+            case .INVALID_URL:
+
+                // TODO move to here!
+
+                break
+
+            case .CONNECTION_ERROR:
+                self.showResultAndEnableUserInput(
+                    msg: "Error occured on connecting: [" + error!.localizedDescription + "]",
+                    color: UIColor.red
+                )
+
+            case .TEXT_ENCODING_ERROR:
+                self.showResultAndEnableUserInput(
+                    msg: "Error! Data could not be converted to text!",
+                    color: UIColor.red
+                )
+
+            case .SUCCESS:
+                self.handleReceivedHtml(htmlString: htmlString!)
+                break
         }
     }
 }
