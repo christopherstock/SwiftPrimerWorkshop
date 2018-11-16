@@ -42,14 +42,20 @@ class IO
     /**
      *  Performs a connection to the specified URL.
      *
-     *  @param url      The URL to crawl.
-     *  @param delegate The delegate to invoke when the URL connection has been performed.
-     *  @param vc       The view controller reference.
-     *
-     *  TODO turn to non-static
+     *  @param urlString The URL to crawl.
+     *  @param delegate  The delegate to invoke when the URL connection has been performed.
+     *  @param vc        The view controller reference.
      */
-    func performUrlConnection(url:URL, vc:ViewController)
+    func performUrlConnection(urlString:String, vc:ViewController)
     {
+        // create URL and break if invalid
+        guard let url:URL = URL(string: urlString) else
+        {
+            print("The inserted URL [" + urlString + "] is invalid!")
+            vc.urlCallback(urlResponse: .INVALID_URL)
+            return
+        }
+
         let callback = {
             (data:Data?, response:URLResponse?, error:Error?) in
             self.receiveUrlCallback(

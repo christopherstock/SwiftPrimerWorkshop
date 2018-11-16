@@ -69,25 +69,15 @@ class ViewController: UIViewController // , URLConnectionDelegate
         // pick the URL from the input field
         let insertedUrlText :String = urlInputField.text!
 
-        // create URL and break if invalid
-        guard let url:URL = URL(string: insertedUrlText) else
-        {
-            // log invalid URL
-            print("The inserted URL [" + insertedUrlText + "] is invalid!")
-            appendHtmlOutputFieldText(msg: "The inserted URl [" + insertedUrlText + "] is invalid!", color: UIColor.red)
-
-            return
-        }
+        // log URL to crawl
+        Debug.log("Connect to URL [" + insertedUrlText + "]")
+        appendHtmlOutputFieldText(msg: "Connecting to URL [" + insertedUrlText + "]", color: UIColor.orange)
 
         // hide input fields
         self.setUserInputEnabled(enabled: false)
 
-        // log URL to crawl
-        Debug.log("Connect to URL [" + url.description + "]")
-        appendHtmlOutputFieldText(msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange)
-
         // perform an URL connection
-        IO().performUrlConnection(url: url, vc: self)
+        IO().performUrlConnection(urlString: insertedUrlText, vc: self)
     }
 
     /**
@@ -178,9 +168,10 @@ class ViewController: UIViewController // , URLConnectionDelegate
         switch (urlResponse)
         {
             case .INVALID_URL:
-
-                // TODO move to here!
-
+                self.showResultAndEnableUserInput(
+                    msg: "The inserted URL is invalid!",
+                    color: UIColor.red
+                )
                 break
 
             case .CONNECTION_ERROR:
