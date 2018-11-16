@@ -5,7 +5,7 @@ import UIKit
  *
  *  TODO Add error handling for ALL kind of errors.
  */
-class ViewController: UIViewController, UITextFieldDelegate
+class ViewController: UIViewController, UITextFieldDelegate, URLConnectionDelegate
 {
     /** The default URL for the URL input field. */
     let DEFAULT_URL :String = "http://christopherstock.de/"
@@ -74,9 +74,15 @@ class ViewController: UIViewController, UITextFieldDelegate
         // hide input fields
         self.setUserInputEnabled( visible: false )
 
-        // perform an URL connection
+        // create URL to crawl
         let url:URL = URL( string: urlToConnect )!
-        performUrlConnection( url: url )
+
+        // log URL to crawl
+        Debug.log( "Connect to URL [" + url.description + "]" )
+        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.red )
+
+        // perform an URL connection
+        IO.performUrlConnection( url: url, delegate: self )
     }
 
     // MARK: UITextFieldDelegate
@@ -109,31 +115,6 @@ class ViewController: UIViewController, UITextFieldDelegate
     }
 
     // TODO outsource! - create callback to invoke when done etc.
-
-    /**
-     *  Performs a connection to the specified URL.
-     *
-     *  @param url The URL to crawl.
-     */
-    func performUrlConnection( url:URL )
-    {
-        Debug.log( "ViewController.performUrlConnection()" )
-        Debug.log( "Connect to URL [" + url.description + "]" )
-
-        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.red )
-
-        // TODO guard with output message!
-
-        // specify the URL data task ( performed in bg thread )
-        let task:URLSessionDataTask = URLSession.shared.dataTask( with: url )
-        {
-            ( data:Data?, response:URLResponse?, error:Error? ) in
-            self.receiveUrlCallback( data: data, response: response, error: error )
-        }
-
-        // run the task
-        task.resume()
-    }
 
     /**
      *  Enabled or disables user input.
@@ -170,8 +151,14 @@ class ViewController: UIViewController, UITextFieldDelegate
         htmlOutputText.scrollRangeToVisible( bottom )
     }
 
+    // MARK: URLConnectionDelegate
+
     /**
      *  Being invoked when the URL callback arrived.
+     *
+     *  @param data     The received data.
+     *  @param response The URL response object.
+     *  @param error    Any error that occured during URL connection.
      */
     func receiveUrlCallback( data:Data?, response:URLResponse?, error:Error? ) -> Void
     {
