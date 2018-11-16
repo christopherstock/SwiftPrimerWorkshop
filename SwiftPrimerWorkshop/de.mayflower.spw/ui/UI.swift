@@ -10,7 +10,7 @@ class UI
      *
      *  @param view The UIView element to round the corners for.
      */
-    static func setRoundCorners( view:UIView )
+    static func setRoundCorners(view:UIView)
     {
         view.layer.masksToBounds = true
         view.layer.cornerRadius  = 5

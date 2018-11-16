@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     /**
      *  The constructor is being invoked when this application is instanciated.
      */
-    func application( _ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    func application(_ application:UIApplication, didFinishLaunchingWithOptions launchOptions:[UIApplication.LaunchOptionsKey:Any]?) -> Bool
     {
-        Debug.log( "AppDelegate.application" )
+        Debug.log("AppDelegate.application")
 
         return true
     }
@@ -24,40 +24,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     /**
      *  Being invoked when the application moves from active to inactive state.
      */
-    func applicationWillResignActive( _ application: UIApplication )
+    func applicationWillResignActive(_ application:UIApplication)
     {
-        Debug.log( "AppDelegate.applicationWillResignActive" )
+        Debug.log("AppDelegate.applicationWillResignActive")
     }
 
     /**
      *  Being invoked when the application enters the background state.
      */
-    func applicationDidEnterBackground( _ application: UIApplication )
+    func applicationDidEnterBackground(_ application:UIApplication)
     {
-        Debug.log( "AppDelegate.applicationDidEnterBackground" )
+        Debug.log("AppDelegate.applicationDidEnterBackground")
     }
 
     /**
      *  Being invoked when the application enters the foreground state.
      */
-    func applicationWillEnterForeground( _ application: UIApplication )
+    func applicationWillEnterForeground(_ application:UIApplication)
     {
-        Debug.log( "AppDelegate.applicationWillEnterForeground" )
+        Debug.log("AppDelegate.applicationWillEnterForeground")
     }
 
     /**
      *  Being invoked when the application became active (again).
      */
-    func applicationDidBecomeActive( _ application: UIApplication )
+    func applicationDidBecomeActive(_ application:UIApplication)
     {
-        Debug.log( "AppDelegate.applicationDidBecomeActive" )
+        Debug.log("AppDelegate.applicationDidBecomeActive")
     }
 
     /**
      *  Being invoked when the application is about to terminate.
      */
-    func applicationWillTerminate( _ application: UIApplication )
+    func applicationWillTerminate(_ application:UIApplication)
     {
-        Debug.log( "AppDelegate.applicationWillTerminate" )
+        Debug.log("AppDelegate.applicationWillTerminate")
     }
 }

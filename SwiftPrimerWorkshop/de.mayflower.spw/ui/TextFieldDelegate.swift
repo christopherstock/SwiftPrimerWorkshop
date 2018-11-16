@@ -10,9 +10,9 @@ class TextFieldDelegate : NSObject, UITextFieldDelegate
      *
      *  @param textField The text field that sent this event to the delegate.
      */
-    func textFieldShouldReturn( _ textField: UITextField ) -> Bool
+    func textFieldShouldReturn(_ textField:UITextField) -> Bool
     {
-        Debug.log( "ViewController.textFieldShouldReturn" )
+        Debug.log("ViewController.textFieldShouldReturn")
 
         // hide the keyboard
         textField.resignFirstResponder()
@@ -25,8 +25,8 @@ class TextFieldDelegate : NSObject, UITextFieldDelegate
      *
      *  @param textField The text field that sent this event to the delegate.
      */
-    func textFieldDidEndEditing( _ textField: UITextField ) -> Void
+    func textFieldDidEndEditing(_ textField: UITextField) -> Void
     {
-        Debug.log( "ViewController.textFieldDidEndEditing" )
+        Debug.log("ViewController.textFieldDidEndEditing")
     }
 }

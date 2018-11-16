@@ -34,8 +34,8 @@ class ViewController: UIViewController, URLConnectionDelegate
         super.viewDidLoad()
 
         // acclaim console and output field
-        Debug.log( "ViewController.viewDidLoad()" )
-        appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler.", color: UIColor.orange )
+        Debug.log("ViewController.viewDidLoad()")
+        appendHtmlOutputFieldText(msg: "Welcome to the Wuzzy Web Crawler.", color: UIColor.orange)
 
         // set input field's delegate
         urlInputField.delegate = textFieldDelegate
@@ -43,14 +43,14 @@ class ViewController: UIViewController, URLConnectionDelegate
         urlInputField.text = DEFAULT_URL
 
         // set round corners for all UI elements
-        UI.setRoundCorners( view: urlInputField )
-        UI.setRoundCorners( view: titleLabel )
-        UI.setRoundCorners( view: crawlButton )
-        UI.setRoundCorners( view: loadingIndicator )
-        UI.setRoundCorners( view: htmlOutputText )
+        UI.setRoundCorners(view: urlInputField)
+        UI.setRoundCorners(view: titleLabel)
+        UI.setRoundCorners(view: crawlButton)
+        UI.setRoundCorners(view: loadingIndicator)
+        UI.setRoundCorners(view: htmlOutputText)
 
         // enable user input
-        self.setUserInputEnabled( enabled: true )
+        self.setUserInputEnabled(enabled: true)
     }
 
     // MARK: InterfaceBuilder Actions
@@ -59,32 +59,32 @@ class ViewController: UIViewController, URLConnectionDelegate
      *  Being invoked when the 'Crawl it!' button is pressed.
      */
     @IBAction
-    func onPressCrawlButton( _ sender: UIButton )
+    func onPressCrawlButton(_ sender: UIButton)
     {
-        Debug.log( "ViewController.onPressCrawlButton" )
+        Debug.log("ViewController.onPressCrawlButton")
 
         // pick the URL from the input field
         let insertedUrlText :String = urlInputField.text!
 
         // create URL and break if invalid
-        guard let url:URL = URL( string: insertedUrlText ) else
+        guard let url:URL = URL(string: insertedUrlText) else
         {
             // log invalid URL
-            print( "The inserted URL [" + insertedUrlText + "] is invalid!" )
-            appendHtmlOutputFieldText( msg: "The inserted URl [" + insertedUrlText + "] is invalid!", color: UIColor.red )
+            print("The inserted URL [" + insertedUrlText + "] is invalid!")
+            appendHtmlOutputFieldText(msg: "The inserted URl [" + insertedUrlText + "] is invalid!", color: UIColor.red)
 
             return
         }
 
         // hide input fields
-        self.setUserInputEnabled( enabled: false )
+        self.setUserInputEnabled(enabled: false)
 
         // log URL to crawl
-        Debug.log( "Connect to URL [" + url.description + "]" )
-        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange )
+        Debug.log("Connect to URL [" + url.description + "]")
+        appendHtmlOutputFieldText(msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange)
 
         // perform an URL connection
-        IO.performUrlConnection( url: url, delegate: self )
+        IO.performUrlConnection(url: url, delegate: self)
     }
 
     /**
@@ -92,7 +92,7 @@ class ViewController: UIViewController, URLConnectionDelegate
      *
      *  @param enabled If the user input elements shall be enabled or disabled.
      */
-    func setUserInputEnabled( enabled:Bool ) -> Void
+    func setUserInputEnabled(enabled:Bool) -> Void
     {
         self.crawlButton.isHidden   = !enabled
         self.urlInputField.isHidden = !enabled
@@ -107,21 +107,21 @@ class ViewController: UIViewController, URLConnectionDelegate
      *  @param msg   The message to append to the HTML Output.
      *  @param color The color for the message to appear.
      */
-    func appendHtmlOutputFieldText( msg:String, color:UIColor )
+    func appendHtmlOutputFieldText(msg:String, color:UIColor)
     {
-        let string           :String                           = ( msg + "\n" )
-        let attributes       :[ NSAttributedString.Key : Any ] = [ NSAttributedString.Key.foregroundColor: color ]
-        let attributesString :NSAttributedString               = NSAttributedString( string: string, attributes: attributes )
+        let string           :String                         = (msg + "\n")
+        let attributes       :[NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: color]
+        let attributesString :NSAttributedString             = NSAttributedString(string: string, attributes: attributes)
 
         // append stored mutable string
-        outputTextContent.append( attributesString )
+        outputTextContent.append(attributesString)
 
         // reassign stored mutable string to output field
         htmlOutputText.attributedText = outputTextContent
 
         // scroll textfield to bottom
-        let bottom = NSMakeRange( htmlOutputText.text.count - 1, 1 )
-        htmlOutputText.scrollRangeToVisible( bottom )
+        let bottom = NSMakeRange(htmlOutputText.text.count - 1, 1)
+        htmlOutputText.scrollRangeToVisible(bottom)
     }
 
     // MARK: URLConnectionDelegate
@@ -134,7 +134,7 @@ class ViewController: UIViewController, URLConnectionDelegate
      *  @param error    Any error that occured during URL connection.
      */
     // TODO enum return value!
-    func receiveUrlCallback( data:Data?, response:URLResponse?, error:Error? ) -> Void
+    func receiveUrlCallback(data:Data?, response:URLResponse?, error:Error?) -> Void
     {
         // check for a connection error
         if let error:Error = error
@@ -148,7 +148,7 @@ class ViewController: UIViewController, URLConnectionDelegate
         }
 
         // pick text data
-        guard let data:Data = data, let htmlString:String = String( data: data, encoding: .utf8 ) else
+        guard let data:Data = data, let htmlString:String = String(data: data, encoding: .utf8) else
         {
             // TODO Return enum constants !!
             self.showResultAndEnableUserInput(
@@ -160,7 +160,7 @@ class ViewController: UIViewController, URLConnectionDelegate
         }
 
         // handle the HTML
-        self.handleReceivedHtml( htmlString: htmlString )
+        self.handleReceivedHtml(htmlString: htmlString)
     }
 
     /**
@@ -169,12 +169,12 @@ class ViewController: UIViewController, URLConnectionDelegate
      *
      *  @param htmlString The HTML string to process.
      */
-    func handleReceivedHtml( htmlString:String ) -> Void
+    func handleReceivedHtml(htmlString:String) -> Void
     {
         // process HTML for output
-        let croppedHtmlString  :String = String( htmlString.prefix( 75 ) )
-        let replacedHtmlString :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
-        print( replacedHtmlString )
+        let croppedHtmlString  :String = String(htmlString.prefix(75))
+        let replacedHtmlString :String = croppedHtmlString.replacingOccurrences(of: "\n", with: " ")
+        print(replacedHtmlString)
 
         self.showResultAndEnableUserInput(
             msg: "Crawled [" + String( htmlString.count ) + "] bytes",
@@ -189,16 +189,16 @@ class ViewController: UIViewController, URLConnectionDelegate
      *  @param msg   The message to show in the Output Text field.
      *  @param color The color for the message to append in the Output Text field.
      */
-    func showResultAndEnableUserInput( msg:String, color:UIColor )
+    func showResultAndEnableUserInput(msg:String, color:UIColor)
     {
         // run on the main thread
         DispatchQueue.main.async
         {
             // show the error in the HTML output
-            self.appendHtmlOutputFieldText( msg: msg, color: color )
+            self.appendHtmlOutputFieldText(msg: msg, color: color)
 
             // show the input components again
-            self.setUserInputEnabled( enabled: true )
+            self.setUserInputEnabled(enabled: true)
         }
     }
 }

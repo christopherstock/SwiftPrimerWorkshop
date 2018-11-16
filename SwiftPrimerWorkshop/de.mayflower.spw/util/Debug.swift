@@ -12,11 +12,11 @@ class Debug
      *
      *  @param msg The message or any debug object to log.
      */
-    static func log( _ msg:Any ) -> Void
+    static func log(_ msg:Any) -> Void
     {
-        if ( Debug.DEBUG_MODE )
+        if (Debug.DEBUG_MODE)
         {
-            print( msg )
+            print(msg)
         }
     }
 }
