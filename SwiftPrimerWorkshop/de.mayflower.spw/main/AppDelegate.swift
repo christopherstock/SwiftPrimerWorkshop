@@ -2,8 +2,6 @@ import UIKit
 
 /**
  *  The App Delegate represents the singleton application instane.
- *
- *  TODO pimp the UI!
  */
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate

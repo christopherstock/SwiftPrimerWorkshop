@@ -2,11 +2,8 @@ import UIKit
 
 /**
  *  The View Controller that holds all UI components of the main view.
- *
- *  TODO reorder methods!
- *  TODO Understand return type 'Never' !
  */
-class ViewController: UIViewController // , URLConnectionDelegate
+class ViewController: UIViewController, URLConnectionDelegate
 {
     /** The default URL for the URL input field. */
     let DEFAULT_URL = "http://christopherstock.de/"
@@ -77,7 +74,7 @@ class ViewController: UIViewController // , URLConnectionDelegate
         self.setUserInputEnabled(enabled: false)
 
         // perform an URL connection
-        IO().performUrlConnection(urlString: insertedUrlText, vc: self)
+        IO().performUrlConnection(urlString: insertedUrlText, delegate: self)
     }
 
     /**
@@ -115,26 +112,6 @@ class ViewController: UIViewController // , URLConnectionDelegate
         // scroll textfield to bottom
         let bottom = NSMakeRange(htmlOutputText.text.count - 1, 1)
         htmlOutputText.scrollRangeToVisible(bottom)
-    }
-
-    /**
-     *  Outputs the result in the HTML output dialog and shows the user input fields.
-     *  These operations are performed on the Main Thread.
-     *
-     *  @param msg   The message to show in the Output Text field.
-     *  @param color The color for the message to append in the Output Text field.
-     */
-    func showResultAndEnableUserInput(msg:String, color:UIColor)
-    {
-        // run on the main thread
-        DispatchQueue.main.async
-        {
-            // show the error in the HTML output
-            self.appendHtmlOutputFieldText(msg: msg, color: color)
-
-            // show the input components again
-            self.setUserInputEnabled(enabled: true)
-        }
     }
 
     /**
@@ -180,6 +157,26 @@ class ViewController: UIViewController // , URLConnectionDelegate
                     msg: "Crawled [" + String( htmlString!.count ) + "] bytes",
                     color: UIColor.green
                 )
+        }
+    }
+
+    /**
+     *  Outputs the result in the HTML output dialog and shows the user input fields.
+     *  These operations are performed on the Main Thread.
+     *
+     *  @param msg   The message to show in the Output Text field.
+     *  @param color The color for the message to append in the Output Text field.
+     */
+    func showResultAndEnableUserInput(msg:String, color:UIColor)
+    {
+        // run on the main thread
+        DispatchQueue.main.async
+        {
+            // show the error in the HTML output
+            self.appendHtmlOutputFieldText(msg: msg, color: color)
+
+            // show the input components again
+            self.setUserInputEnabled(enabled: true)
         }
     }
 }
