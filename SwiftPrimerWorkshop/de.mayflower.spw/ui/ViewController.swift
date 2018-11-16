@@ -10,16 +10,16 @@ class ViewController: UIViewController, URLConnectionDelegate
 
     // MARK: InterfaceBuilder Outlets
 
-    /** The 'Title' label. TODO remove spaces! */
-    @IBOutlet weak var titleLabel       :UILabel!
+    /** The 'Title' label. */
+    @IBOutlet weak var titleLabel :UILabel!
     /** The 'URL input' text field. */
-    @IBOutlet weak var urlInputField    :UITextField!
+    @IBOutlet weak var urlInputField :UITextField!
     /** The 'Crawl it!' button. */
-    @IBOutlet weak var crawlButton      :UIButton!
+    @IBOutlet weak var crawlButton :UIButton!
     /** The loading indicator. */
     @IBOutlet weak var loadingIndicator :UIActivityIndicatorView!
     /** The 'HTML output' text view. */
-    @IBOutlet weak var htmlOutputText   :UITextView!
+    @IBOutlet weak var htmlOutputText :UITextView!
 
     /** The reference to the text field delegate. TODO remove all redundant type definitions! */
     var textFieldDelegate :TextFieldDelegate = TextFieldDelegate()
@@ -44,11 +44,11 @@ class ViewController: UIViewController, URLConnectionDelegate
         urlInputField.text = DEFAULT_URL
 
         // set round corners for all UI elements
-        UI.setRoundCorners( view: urlInputField    )
-        UI.setRoundCorners( view: titleLabel       )
-        UI.setRoundCorners( view: crawlButton      )
+        UI.setRoundCorners( view: urlInputField )
+        UI.setRoundCorners( view: titleLabel )
+        UI.setRoundCorners( view: crawlButton )
         UI.setRoundCorners( view: loadingIndicator )
-        UI.setRoundCorners( view: htmlOutputText   )
+        UI.setRoundCorners( view: htmlOutputText )
 
         // enable user input
         self.setUserInputEnabled( enabled: true )
@@ -173,8 +173,8 @@ class ViewController: UIViewController, URLConnectionDelegate
     func handleReceivedHtml( htmlString:String ) -> Void
     {
         // process HTML for output
-        let croppedHtmlString   :String = String( htmlString.prefix( 75 ) )
-        let replacedHtmlString  :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
+        let croppedHtmlString  :String = String( htmlString.prefix( 75 ) )
+        let replacedHtmlString :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
         print( replacedHtmlString )
 
         self.showResultAndEnableUserInput(
