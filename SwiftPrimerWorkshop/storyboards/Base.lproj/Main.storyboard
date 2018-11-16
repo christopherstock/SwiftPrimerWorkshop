@@ -55,7 +55,7 @@
                                     </activityIndicatorView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Lg-Fpn" userLabel="HTML output">
                                         <rect key="frame" x="0.0" y="150" width="374" height="200"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.75398877640845074" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="ZEL-Js-cKu"/>
                                         </constraints>

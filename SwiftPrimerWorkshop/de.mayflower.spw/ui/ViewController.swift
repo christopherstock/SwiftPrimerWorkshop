@@ -2,17 +2,13 @@ import UIKit
 
 /**
  *  The View Controller that holds all UI components of the main view.
- *
- *  TODO Add error handling for ALL kind of errors.
  */
-class ViewController: UIViewController, UITextFieldDelegate, URLConnectionDelegate
+class ViewController: UIViewController, URLConnectionDelegate
 {
     /** The default URL for the URL input field. */
     let DEFAULT_URL :String = "http://christopherstock.de/"
 
     // MARK: InterfaceBuilder Outlets
-
-    // TODO outsource!
 
     /** The 'Title' label. */
     @IBOutlet weak var titleLabel       :UILabel!
@@ -24,6 +20,9 @@ class ViewController: UIViewController, UITextFieldDelegate, URLConnectionDelega
     @IBOutlet weak var loadingIndicator :UIActivityIndicatorView!
     /** The 'HTML output' text view. */
     @IBOutlet weak var htmlOutputText   :UITextView!
+
+    /** The reference to the text field delegate. */
+    var textFieldDelegate :UITextFieldDelegate?
 
     /** The mutable attributed string being applied to the HTML Output Textfield. */
     var outputTextContent :NSMutableAttributedString = NSMutableAttributedString()
@@ -39,8 +38,10 @@ class ViewController: UIViewController, UITextFieldDelegate, URLConnectionDelega
         Debug.log( "ViewController.viewDidLoad()" )
         appendHtmlOutputFieldText( msg: "Welcome to the Wuzzy Web Crawler.", color: UIColor.orange )
 
+        textFieldDelegate = TextFieldDelegate()
+
         // set input field's delegate
-        urlInputField.delegate = self
+        urlInputField.delegate = textFieldDelegate
         urlInputField.borderStyle = .none
         urlInputField.text = DEFAULT_URL
 
@@ -65,56 +66,32 @@ class ViewController: UIViewController, UITextFieldDelegate, URLConnectionDelega
     {
         Debug.log( "ViewController.onPressCrawlButton" )
 
-        // pick the URL from the input field
-        let urlToConnect :String = urlInputField.text!
-
         // show the loading circle
         loadingIndicator.isHidden = false
+
+
+        // pick the URL from the input field
+        let urlToConnect :String = urlInputField.text!
 
         // hide input fields
         self.setUserInputEnabled( visible: false )
 
         // create URL to crawl
-        let url:URL = URL( string: urlToConnect )!
+        let url:URL? = URL( string: urlToConnect )
 
-        // log URL to crawl
-        Debug.log( "Connect to URL [" + url.description + "]" )
-        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange )
+        // check for valid URL
+        if let url:URL = url
+        {
+            // log URL to crawl
+            Debug.log( "Connect to URL [" + url.description + "]" )
+            appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange )
 
-        // perform an URL connection
-        IO.performUrlConnection( url: url, delegate: self )
+            // perform an URL connection
+            IO.performUrlConnection( url: url, delegate: self )
+        }
+
+        // TODO Error handling! use Guard syntax!
     }
-
-    // MARK: UITextFieldDelegate
-
-    // TODO Outsource Delegate functionality for input text field.
-
-    /**
-     *  Being invoked when the text field completed all editing activities.
-     *
-     *  @param textField The text field that sent this event to the delegate.
-     */
-    func textFieldShouldReturn( _ textField: UITextField ) -> Bool
-    {
-        Debug.log( "ViewController.textFieldShouldReturn" )
-
-        // hide the keyboard.
-        textField.resignFirstResponder()
-
-        return true
-    }
-
-    /**
-     *  Being invoked when the text field completed all editing activities.
-     *
-     *  @param textField The text field that sent this event to the delegate.
-     */
-    func textFieldDidEndEditing( _ textField: UITextField ) -> Void
-    {
-        Debug.log( "ViewController.textFieldDidEndEditing" )
-    }
-
-    // TODO outsource! - create callback to invoke when done etc.
 
     /**
      *  Enabled or disables user input.
