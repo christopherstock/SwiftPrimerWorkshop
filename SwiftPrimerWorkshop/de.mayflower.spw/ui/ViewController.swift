@@ -79,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate, URLConnectionDelega
 
         // log URL to crawl
         Debug.log( "Connect to URL [" + url.description + "]" )
-        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.red )
+        appendHtmlOutputFieldText( msg: "Connecting to URL [" + url.description + "]", color: UIColor.orange )
 
         // perform an URL connection
         IO.performUrlConnection( url: url, delegate: self )
