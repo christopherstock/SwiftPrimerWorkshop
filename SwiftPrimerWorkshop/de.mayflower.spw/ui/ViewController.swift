@@ -143,7 +143,6 @@ class ViewController: UIViewController, URLConnectionDelegate
                 msg: "Error occured on connecting: [" + error.localizedDescription + "]",
                 color: UIColor.red
             )
-
             return
         }
 
@@ -155,7 +154,6 @@ class ViewController: UIViewController, URLConnectionDelegate
                 msg: "Error! Data could not be converted to text!",
                 color: UIColor.red
             )
-
             return
         }
 
