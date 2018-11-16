@@ -142,15 +142,10 @@ class ViewController: UIViewController, URLConnectionDelegate
         // check for a connection error
         if let error:Error = error
         {
-            // run on main thread
-            DispatchQueue.main.async
-            {
-                // show the error in the HTML output
-                self.appendHtmlOutputFieldText( msg: "Error occured on connecting: [" + error.localizedDescription + "]", color: UIColor.red )
-
-                // show the input components again
-                self.setUserInputEnabled( enabled: true )
-            }
+            self.showResultAndEnableUserInput(
+                msg: "Error occured on connecting: [" + error.localizedDescription + "]",
+                color: UIColor.red
+            )
 
             return
         }
@@ -158,31 +153,22 @@ class ViewController: UIViewController, URLConnectionDelegate
         // pick text data
         guard let data:Data = data else
         {
-            // run on main thread
-            DispatchQueue.main.async
-            {
-                // show the error in the HTML output
-                self.appendHtmlOutputFieldText( msg: "Error! Data could not be converted to text!", color: UIColor.red )
-
-                // show the input components again
-                self.setUserInputEnabled( enabled: true )
-            }
+            self.showResultAndEnableUserInput(
+                msg: "Error! Data could not be converted to text!",
+                color: UIColor.red
+            )
 
             return
         }
 
         // convert data to HTML
+        // TODO merge with previous "guard" statement
         guard let htmlString:String = String( data: data, encoding: .utf8 ) else
         {
-            // run on main thread
-            DispatchQueue.main.async
-            {
-                // show the error in the HTML output
-                self.appendHtmlOutputFieldText( msg: "Error! Data could not be converted to text!", color: UIColor.red )
-
-                // show the input components again
-                self.setUserInputEnabled( enabled: true )
-            }
+            self.showResultAndEnableUserInput(
+                msg: "Error! Data could not be converted to text!",
+                color: UIColor.red
+            )
 
             return
         }
@@ -204,15 +190,10 @@ class ViewController: UIViewController, URLConnectionDelegate
         let replacedHtmlString  :String = croppedHtmlString.replacingOccurrences( of: "\n", with: " " )
         print( replacedHtmlString )
 
-        // run on main thread
-        DispatchQueue.main.async
-        {
-            // show the results in the HTML output
-            self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes", color: UIColor.green )
-
-            // show the input components again
-            self.setUserInputEnabled( enabled: true )
-        }
+        self.showResultAndEnableUserInput(
+            msg: "Crawled [" + String( htmlString.count ) + "] bytes",
+            color: UIColor.green
+        )
     }
 
     /**
@@ -224,7 +205,7 @@ class ViewController: UIViewController, URLConnectionDelegate
      */
     func showResultAndEnableUserInput( msg:String, color:UIColor )
     {
-        // run on main thread
+        // run on the main thread
         DispatchQueue.main.async
         {
             // show the error in the HTML output
