@@ -139,13 +139,53 @@ class ViewController: UIViewController, URLConnectionDelegate
      */
     func receiveUrlCallback( data:Data?, response:URLResponse?, error:Error? ) -> Void
     {
-        // TODO implement error handling in case of 1. wrong URL, 2. empty field, 3. 404, 4. timeout etc.
+        // check for a connection error
+        if let error:Error = error
+        {
+            // run on main thread
+            DispatchQueue.main.async
+            {
+                // show the error in the HTML output
+                self.appendHtmlOutputFieldText( msg: "Error occured on connecting: [" + error.localizedDescription + "]", color: UIColor.red )
 
-        // pick data
-        guard let data = data else { return }
+                // show the input components again
+                self.setUserInputEnabled( enabled: true )
+            }
+
+            return
+        }
+
+        // pick text data
+        guard let data:Data = data else
+        {
+            // run on main thread
+            DispatchQueue.main.async
+            {
+                // show the error in the HTML output
+                self.appendHtmlOutputFieldText( msg: "Error! Data could not be converted to text!", color: UIColor.red )
+
+                // show the input components again
+                self.setUserInputEnabled( enabled: true )
+            }
+
+            return
+        }
 
         // convert data to HTML
-        let htmlString :String = String( data: data, encoding: .utf8 )!
+        guard let htmlString:String = String( data: data, encoding: .utf8 ) else
+        {
+            // run on main thread
+            DispatchQueue.main.async
+            {
+                // show the error in the HTML output
+                self.appendHtmlOutputFieldText( msg: "Error! Data could not be converted to text!", color: UIColor.red )
+
+                // show the input components again
+                self.setUserInputEnabled( enabled: true )
+            }
+
+            return
+        }
 
         // handle the HTML
         self.handleReceivedHtml( htmlString: htmlString )
@@ -169,6 +209,26 @@ class ViewController: UIViewController, URLConnectionDelegate
         {
             // show the results in the HTML output
             self.appendHtmlOutputFieldText( msg: "Crawled [" + String( htmlString.count ) + "] bytes", color: UIColor.green )
+
+            // show the input components again
+            self.setUserInputEnabled( enabled: true )
+        }
+    }
+
+    /**
+     *  Outputs the result in the HTML output dialog and shows the user input fields.
+     *  These operations are performed on the Main Thread.
+     *
+     *  @param msg   The message to show in the Output Text field.
+     *  @param color The color for the message to append in the Output Text field.
+     */
+    func showResultAndEnableUserInput( msg:String, color:UIColor )
+    {
+        // run on main thread
+        DispatchQueue.main.async
+        {
+            // show the error in the HTML output
+            self.appendHtmlOutputFieldText( msg: msg, color: color )
 
             // show the input components again
             self.setUserInputEnabled( enabled: true )
