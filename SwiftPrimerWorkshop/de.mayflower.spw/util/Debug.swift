@@ -20,3 +20,15 @@ class Debug
         }
     }
 }
+
+/**
+ *  This is an alternative for suppressing print statements.
+ *  It overrides the print statement.
+ */
+public func print(_ items: Any)
+{
+    if (Debug.DEBUG_MODE)
+    {
+        Swift.print(items)
+    }
+}
